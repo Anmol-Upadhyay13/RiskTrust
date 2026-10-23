@@ -14,6 +14,7 @@ import { PreventionPlan } from './components/PreventionPlan';
 import { ResearchLab } from './components/ResearchLab';
 import { BatchScreeningLab } from './components/BatchScreeningLab';
 import { HistoryDashboard } from './components/HistoryDashboard';
+import { DiagnosticTool } from './components/DiagnosticTool';
 import { MedicalDisclaimerModal } from './components/MedicalDisclaimerModal';
 import { ShieldCheck, Info } from 'lucide-react';
 
@@ -201,12 +202,20 @@ export default function App() {
               setActiveTab('prevention');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onNavigateToDiagnostic={() => {
+              setActiveTab('diagnostic');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             onSelectModel={handleSelectModel}
           />
         )}
 
         {activeTab === 'prevention' && (
           <PreventionPlan assessment={assessment} />
+        )}
+
+        {activeTab === 'diagnostic' && (
+          <DiagnosticTool />
         )}
 
         {activeTab === 'research' && (

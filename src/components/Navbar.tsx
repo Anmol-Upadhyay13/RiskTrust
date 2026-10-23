@@ -7,10 +7,11 @@ import {
   Shield,
   HeartPulse,
   BrainCircuit,
-  Users
+  Users,
+  Stethoscope
 } from 'lucide-react';
 
-export type NavTab = 'screening' | 'explainable' | 'prevention' | 'research' | 'batch' | 'history';
+export type NavTab = 'screening' | 'explainable' | 'prevention' | 'diagnostic' | 'research' | 'batch' | 'history';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -104,6 +105,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
+            onClick={() => onTabChange('diagnostic')}
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors shrink-0 flex items-center gap-1.5 cursor-pointer ${
+              activeTab === 'diagnostic'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <Stethoscope className="w-3.5 h-3.5 text-teal-500" />
+            <span>4. Real-Time Diagnostic Tool</span>
+            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+              activeTab === 'diagnostic' ? 'bg-blue-700 text-teal-200' : 'bg-teal-50 text-teal-700 border border-teal-200'
+            }`}>
+              CGM &middot; ADA Lab
+            </span>
+          </button>
+
+          <button
             onClick={() => onTabChange('research')}
             className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors shrink-0 flex items-center gap-1.5 cursor-pointer ${
               activeTab === 'research'
@@ -112,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <BarChart2 className="w-3.5 h-3.5" />
-            <span>4. ML Research & Benchmark Lab</span>
+            <span>5. ML Research & Reliability Lab</span>
           </button>
 
           <button
@@ -124,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Users className="w-3.5 h-3.5" />
-            <span>5. Batch Screening Lab</span>
+            <span>6. Batch Screening Lab</span>
           </button>
 
           <button
@@ -136,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <History className="w-3.5 h-3.5" />
-            <span>6. History ({historyCount})</span>
+            <span>7. History ({historyCount})</span>
           </button>
         </div>
       </div>

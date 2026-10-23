@@ -25,12 +25,14 @@ import {
 interface ExplainableResultsProps {
   assessment: FullAssessmentResult;
   onNavigateToPrevention: () => void;
+  onNavigateToDiagnostic?: () => void;
   onSelectModel: (algo: AlgorithmType) => void;
 }
 
 export const ExplainableResults: React.FC<ExplainableResultsProps> = ({
   assessment,
   onNavigateToPrevention,
+  onNavigateToDiagnostic,
   onSelectModel
 }) => {
   const { primaryPrediction, allModelPredictions, shapContributions, domainScores, baseRisk, patientData } = assessment;
@@ -291,21 +293,32 @@ export const ExplainableResults: React.FC<ExplainableResultsProps> = ({
         <SHAPBeeswarmPlot />
       </div>
 
-      {/* Bottom CTA to Prevention Plan */}
-      <div className="p-5 bg-slate-900 text-white rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Bottom CTA to Prevention Plan & Diagnostic Tool */}
+      <div className="p-5 bg-slate-900 text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <h4 className="text-base font-bold">Ready for your personalized prevention roadmap?</h4>
+          <h4 className="text-base font-bold">Next Steps: Prevention Plan or Real-Time Diagnostic Correlation</h4>
           <p className="text-xs text-slate-300 mt-0.5">
-            View targeted dietary guidelines, exercise prescriptions, and an exportable doctor discussion brief.
+            View targeted lifestyle guidance, or run the live continuous glucose telemetry (CGM) and ADA laboratory diagnostic criteria evaluator.
           </p>
         </div>
-        <button
-          onClick={onNavigateToPrevention}
-          className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg text-xs transition-colors shrink-0 flex items-center gap-2 cursor-pointer shadow-sm"
-        >
-          <span>View Prevention Plan</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {onNavigateToDiagnostic && (
+            <button
+              onClick={onNavigateToDiagnostic}
+              className="px-4 py-2 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-lg text-xs transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
+            >
+              <Stethoscope className="w-3.5 h-3.5" />
+              <span>Real-Time Diagnostic Tool</span>
+            </button>
+          )}
+          <button
+            onClick={onNavigateToPrevention}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg text-xs transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
+          >
+            <span>View Prevention Plan</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
     </div>
   );
