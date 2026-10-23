@@ -1,0 +1,829 @@
+# MASTER ONE-SHOT BUILD PROMPT
+## RiskTrust — An Uncertainty-Aware, Explainable AI Framework for Reliable Diabetes Risk Screening and Personalized Preventive Decision Support
+
+Act as a senior AI/ML research engineer, healthcare software architect, full-stack developer, MLOps engineer, cybersecurity engineer, and academic research supervisor.
+
+Build a complete, functional, research-oriented healthcare platform named **RiskTrust**. This must be a real, integrated application—not a static UI prototype, a collection of disconnected pages, or a frontend filled with fabricated prediction results.
+
+The system must investigate whether combining prediction calibration, uncertainty estimation, explanation-stability auditing, constrained counterfactual explanations, fairness analysis, and external validation can improve the reliability of diabetes risk screening.
+
+The project must be suitable for an advanced undergraduate or postgraduate capstone, technical portfolio, and potential research-paper submission.
+
+IMPORTANT: Do not claim that the project is scientifically novel until a literature review establishes the research gap. Do not claim clinical effectiveness without appropriate clinical validation. Never present model predictions as a diabetes diagnosis.
+
+---
+
+# 1. PRIMARY RESEARCH CONTRIBUTION
+
+Develop a framework called the **RiskTrust Reliability Engine**.
+
+Its central research question is:
+
+"Can an integrated reliability-auditing framework identify unreliable diabetes-risk predictions and infeasible explanations more effectively than conventional evaluation based primarily on predictive performance and feature importance?"
+
+The framework must evaluate five dimensions:
+
+1. Predictive performance.
+2. Probability calibration and prediction uncertainty.
+3. Explanation stability and counterfactual feasibility.
+4. Subgroup fairness and reliability.
+5. Generalization under dataset shift.
+
+Build an experimental pipeline that compares a conventional baseline system against the proposed RiskTrust framework.
+
+Do not assume the proposed framework will outperform the baseline. Measure the results and report positive, negative, or inconclusive findings honestly.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Frontend:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- React Router
+- React Hook Form
+- Zod validation
+
+Application backend:
+- Node.js
+- Express.js
+- REST APIs
+- Secure authentication
+- Role-based authorization
+
+Machine-learning service:
+- Python
+- FastAPI
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- SHAP
+- Appropriate calibration and uncertainty-evaluation libraries
+
+Database:
+- MongoDB
+- Mongoose
+- Schema validation
+- Indexed queries
+- Explicit record ownership
+
+Testing and deployment:
+- Pytest
+- Vitest and React Testing Library
+- Backend integration tests
+- Docker and Docker Compose
+- Environment-variable configuration
+- API health checks
+- Structured error handling
+- CI workflow where supported
+
+Use compatible, maintained package versions. Avoid unnecessary dependencies. If the platform cannot support a technology, implement the closest maintainable alternative and document the change.
+
+---
+
+# 3. USER INTERFACE AND DESIGN
+
+Create a premium, modern, professional healthcare research dashboard.
+
+Visual direction:
+- Light theme as the default.
+- White and soft neutral backgrounds.
+- Navy and restrained teal accents.
+- Clear typography and consistent spacing.
+- Accessible contrast.
+- Responsive desktop, tablet, and mobile layouts.
+- Optional dark mode.
+- Subtle transitions without excessive animation.
+- Professional charts and tables.
+- No cluttered layouts or unnecessary gradients.
+
+Create the following pages:
+
+1. Landing page.
+2. Sign-up and login.
+3. User onboarding and consent.
+4. User dashboard.
+5. Health assessment questionnaire.
+6. Risk assessment results.
+7. Explainability explorer.
+8. Counterfactual simulator.
+9. RiskTrust reliability report.
+10. Prevention planner.
+11. Longitudinal monitoring.
+12. Assessment history.
+13. Research laboratory.
+14. Fairness audit dashboard.
+15. Dataset shift and model monitoring.
+16. Administrator dashboard.
+17. Profile and privacy settings.
+18. Help, methodology, limitations, and sources.
+19. Privacy policy and medical disclaimer.
+
+Provide useful empty states, loading states, error states, form validation, confirmation dialogs, and mobile navigation.
+
+Every visible button must perform its intended action. Do not leave dead buttons, broken routes, fake charts, or placeholder success messages.
+
+---
+
+# 4. USER AUTHENTICATION AND PRIVACY
+
+Implement:
+- Registration and login.
+- Secure password hashing.
+- Session or token management with secure configuration.
+- Role-based access for users and administrators.
+- Protected API endpoints.
+- Password-reset workflow if supported by the deployment environment.
+- Consent capture and consent history.
+- Account deletion and authorized health-record deletion.
+- User data export.
+- Data-retention policies.
+- Audit events for sensitive operations.
+- Rate limiting and request validation.
+- Encryption in transit.
+- Appropriate protection of sensitive stored information.
+
+Never put database credentials, authentication secrets, private API keys, or unrestricted administrative credentials in client-side code.
+
+Do not expose identifiable health data in application logs. Do not allow administrators to access health information unnecessarily.
+
+Use synthetic demonstration data by default. Clearly label synthetic records.
+
+---
+
+# 5. HEALTH ASSESSMENT MODULE
+
+Build a multi-step questionnaire with progress tracking and clear instructions.
+
+Support features only when appropriate to the chosen dataset and validated assessment protocol, such as:
+- Age.
+- Sex or gender variables, as supported by the dataset.
+- Height and weight.
+- Calculated BMI.
+- Blood glucose measurements.
+- Blood pressure.
+- Family history.
+- Physical activity.
+- Smoking status.
+- Relevant symptoms.
+- Other available health measurements.
+
+Requirements:
+- Unit validation.
+- Plausible-range checks.
+- Missing-value handling.
+- Clear distinction between measured and self-reported information.
+- Ability to save and resume an assessment.
+- Explanation of why a field is requested.
+- Detection of incompatible or unavailable features.
+- Prevention of accidental duplicate submissions.
+- Explicit warnings when inputs are incomplete.
+
+Never fabricate missing patient values. Do not treat missing information as evidence that a risk factor is absent.
+
+Do not force every possible input into every model. Maintain a documented mapping between questionnaire fields and trained model features.
+
+---
+
+# 6. DATASET MANAGEMENT AND PREPROCESSING
+
+Use documented, appropriately licensed datasets suitable for diabetes screening research.
+
+Evaluate possible datasets such as:
+- UCI Early Stage Diabetes Risk Prediction dataset.
+- CDC BRFSS diabetes indicators dataset.
+
+Inspect the actual files and document:
+- Dataset provenance.
+- License and permitted use.
+- Target definition.
+- Feature definitions.
+- Sample size.
+- Class distribution.
+- Population characteristics.
+- Missingness.
+- Known limitations.
+- Potential selection bias.
+
+Do not assume these datasets have identical features, target definitions, or clinical meanings.
+
+Implement:
+- Data validation.
+- Duplicate detection.
+- Missingness reports.
+- Target-distribution analysis.
+- Exploratory data analysis.
+- Preprocessing pipelines.
+- Categorical encoding.
+- Scaling where necessary.
+- Feature-selection experiments.
+- Training-only class-imbalance handling.
+- Reproducible random seeds.
+- Versioned dataset metadata.
+
+Prevent data leakage. Fit preprocessing, feature selection, resampling, and other learned transformations only within training folds.
+
+Keep train, validation, and test data separate. Use patient-level separation when identifiers permit it.
+
+Do not combine incompatible datasets without a defensible methodology.
+
+---
+
+# 7. MACHINE-LEARNING MODEL LABORATORY
+
+Implement and compare:
+1. Dummy or simple baseline classifier.
+2. Logistic Regression.
+3. Random Forest.
+4. Support Vector Machine.
+5. K-Nearest Neighbors.
+6. XGBoost, where appropriate.
+
+Include:
+- Stratified cross-validation.
+- Reproducible hyperparameter optimization.
+- Model comparison.
+- Training and validation learning curves where useful.
+- Confusion matrices.
+- Feature importance.
+- Model versioning.
+- Saved preprocessing pipelines.
+- Model serialization and loading.
+- Experiment metadata.
+- Automated evaluation reports.
+
+Report:
+- Accuracy.
+- Precision.
+- Recall/sensitivity.
+- Specificity.
+- F1-score.
+- ROC-AUC.
+- Precision-recall AUC.
+- Brier score.
+- Calibration curves.
+- Confidence intervals where feasible.
+
+Do not choose the best model using accuracy alone. Explain the trade-offs between false negatives, false positives, calibration, interpretability, and generalization.
+
+For imbalanced datasets, make precision-recall analysis a key part of evaluation.
+
+Select thresholds using training and validation data, never by optimizing on the final test set.
+
+---
+
+# 8. RISK ESTIMATION AND CALIBRATION
+
+Create a dedicated risk-estimation module.
+
+Requirements:
+- Use a validated, versioned preprocessing pipeline.
+- Return the model score and calibrated probability when calibration is justified.
+- Evaluate calibration using suitable metrics and plots.
+- Support threshold selection using validation data.
+- Document the meaning and limitations of the model output.
+- Distinguish a model score from an established clinical risk probability.
+- Display the model version and assessment timestamp.
+- Handle missing, invalid, and unsupported input combinations.
+
+Do not label arbitrary model probabilities as clinically meaningful probabilities without suitable validation.
+
+If risk categories are displayed, label them as model-defined screening categories and document their thresholds.
+
+Never claim that a low score rules out diabetes or that a high score confirms diabetes.
+
+---
+
+# 9. CORE DIFFERENTIATOR: RISKTRUST RELIABILITY ENGINE
+
+Build a dedicated reliability-auditing service.
+
+It must evaluate several independent signals rather than combining everything into an unexplained arbitrary score.
+
+## A. Calibration reliability
+- Evaluate whether predicted probabilities agree with observed frequencies.
+- Display Brier score and calibration plots.
+- Compare calibration across model versions.
+- Document calibration limitations.
+
+## B. Input reliability
+- Detect missing or invalid fields.
+- Compare inputs against the training distribution.
+- Identify unsupported feature combinations.
+- Flag possible out-of-distribution observations.
+- Explain why the system may not be able to provide a reliable estimate.
+
+## C. Model disagreement
+- Compare independently trained models on the same supported input.
+- Display disagreement where models disagree.
+- Explain that disagreement is a warning signal, not proof that the prediction is wrong.
+- Avoid averaging incompatible scores without a defensible method.
+
+## D. Explanation reliability
+- Measure the stability of explanations under small, plausible input perturbations.
+- Compare global feature rankings across training folds or model versions.
+- Report changes in feature contributions.
+- Identify explanations that are sensitive to perturbations.
+- Do not present correlated features as independent causes.
+
+## E. Counterfactual reliability
+- Validate generated counterfactuals.
+- Confirm that the model output actually changes as claimed.
+- Identify implausible or infeasible changes.
+- Report whether a valid counterfactual could be found.
+- Never imply that changing a feature guarantees a health outcome.
+
+Display these components separately in the interface. Do not create an arbitrary overall reliability score unless its formula is documented and empirically evaluated.
+
+---
+
+# 10. ADVANCED EXPLAINABLE AI
+
+Implement SHAP where supported by the selected model.
+
+Provide:
+- Global feature importance.
+- Individual feature contributions.
+- Waterfall charts.
+- Summary plots.
+- Comparison across model versions.
+- Plain-language explanations.
+- Explanation stability reports.
+- Feature-correlation warnings.
+- Exportable explanation reports.
+
+Each individual assessment should show:
+- Important contributing features.
+- Direction of each feature's contribution to the model output.
+- Relevant data-quality limitations.
+- A statement that contribution does not establish causation.
+
+Use appropriate explanation methods for each model. Do not claim every explanation technique works identically across all models.
+
+---
+
+# 11. CONSTRAINED COUNTERFACTUAL SIMULATOR
+
+Build an interactive what-if simulator.
+
+Users should be able to explore hypothetical changes to eligible features and observe the model's output under those hypothetical inputs.
+
+Requirements:
+- Before-and-after score comparison.
+- Configurable sliders for eligible numeric features.
+- Input constraints.
+- Immutable-feature restrictions.
+- Plausibility checks.
+- Categorical-feature validation.
+- Feature-specific direction and change constraints where justified.
+- Minimal-change search where computationally feasible.
+- Validity checks after generating each counterfactual.
+- Feasibility and sparsity metrics.
+- Clear explanation of which features changed.
+- Failure state when no valid counterfactual is found.
+
+Do not recommend changing age, sex, family history, or other immutable attributes.
+
+Do not suggest stopping medication or altering treatment.
+
+Do not present a hypothetical model-score reduction as proof that diabetes risk has actually decreased.
+
+---
+
+# 12. UNCERTAINTY-AWARE PREDICTION
+
+Implement appropriate uncertainty methods.
+
+Possible approaches include:
+- Probability calibration.
+- Bootstrap-based model variability.
+- Ensemble disagreement.
+- Conformal prediction where its assumptions and calibration requirements can be supported.
+- Out-of-distribution detection.
+
+Select methods based on the dataset, model, and research question. Do not automatically label all uncertainty estimates as statistically valid confidence intervals.
+
+Display:
+- Estimated model output.
+- Calibration information.
+- Uncertainty indicators.
+- Missing-input warnings.
+- Out-of-distribution warnings.
+- Model disagreement.
+- Reasons a prediction may be unreliable.
+
+Allow an insufficient-information state instead of forcing a risk category in every case.
+
+Evaluate whether uncertain cases are actually more error-prone on held-out data. Report limitations and avoid unsupported guarantees about coverage or error rates.
+
+---
+
+# 13. EXTERNAL VALIDATION AND DATASET SHIFT
+
+Create a research workflow for evaluating a trained model on an independent dataset.
+
+Requirements:
+- Dataset compatibility checks.
+- Target-definition comparison.
+- Feature mapping documentation.
+- Preprocessing compatibility.
+- Independent evaluation without test-set tuning.
+- Performance and calibration comparison.
+- Dataset-shift visualizations.
+- Error analysis.
+- Documentation of population differences.
+- Clear reporting when external evaluation is not possible.
+
+Do not pretend that external validation has succeeded if the required dataset is unavailable.
+
+Do not silently retrain or adapt a model on the external test set and then report its results as independent validation.
+
+---
+
+# 14. FAIRNESS AND SUBGROUP AUDIT
+
+Implement subgroup analysis only where data supports it.
+
+Evaluate:
+- Recall.
+- False-negative rate.
+- False-positive rate.
+- Precision.
+- Specificity.
+- Calibration.
+- Confidence intervals.
+- Group sample sizes.
+
+Provide:
+- Comparison charts.
+- Tables.
+- Limitations.
+- Warnings for small samples.
+- Model-version comparisons.
+
+Avoid declaring a model fair based on one metric. Discuss trade-offs and differences in the dataset.
+
+Do not infer protected characteristics that were not collected or appropriately defined.
+
+---
+
+# 15. PERSONALIZED PREVENTION COMPANION
+
+Create an educational prevention planner based on validated sources.
+
+Support:
+- Healthy-eating education.
+- Physical-activity goal setting.
+- User-defined habits.
+- Weekly planning.
+- Budget-aware meal ideas.
+- Indian food preferences.
+- Vegetarian and non-vegetarian options.
+- Reminder preferences.
+- Progress tracking.
+- Educational explanations linked to the relevant risk factors.
+
+Each recommendation should include:
+- The recommendation.
+- Its purpose.
+- Its evidence source.
+- Publication or review date where available.
+- Relevant limitations.
+- Appropriate safety caveats.
+
+Use reviewed healthcare guidance and a curated source repository. Do not allow a generative model to invent medical citations or create unsupported clinical recommendations.
+
+Do not prescribe medication, supplements, or treatment.
+
+Clearly distinguish educational prevention suggestions from individualized medical advice.
+
+---
+
+# 16. LONGITUDINAL MONITORING
+
+Implement:
+- Historical assessments.
+- Time-stamped measurements.
+- Trend charts.
+- Repeated-assessment comparisons.
+- Goal progress.
+- Follow-up reminders.
+- Missing-follow-up indicators.
+- Explanation comparisons.
+- Downloadable summaries.
+
+Distinguish between:
+- Changes in model score.
+- Changes in input values.
+- Changes in model version.
+- Changes in actual measured health indicators.
+
+Never describe a changing model score alone as confirmed disease progression or prevention.
+
+---
+
+# 17. RESEARCH REPRODUCIBILITY LAB
+
+Create an experiment-management dashboard.
+
+Track:
+- Dataset version.
+- Dataset hash where appropriate.
+- Preprocessing configuration.
+- Random seed.
+- Train/validation/test split.
+- Model family.
+- Hyperparameters.
+- Feature set.
+- Calibration method.
+- Decision threshold.
+- Evaluation metrics.
+- Confidence intervals.
+- Model artifact version.
+- Experiment timestamp.
+- Known limitations.
+
+Implement ablation studies comparing:
+1. Baseline prediction.
+2. Prediction plus calibration.
+3. Prediction plus uncertainty analysis.
+4. Prediction plus explanation-stability auditing.
+5. Prediction plus constrained counterfactuals.
+6. Integrated RiskTrust evaluation.
+
+Compare the systems using consistent splits and evaluation protocols.
+
+Generate reproducible CSV and JSON experiment exports and a research report suitable for further editing.
+
+---
+
+# 18. MODEL DRIFT MONITORING
+
+Implement:
+- Feature-distribution monitoring.
+- Missingness monitoring.
+- Dataset-shift indicators.
+- Model-version comparisons.
+- Performance monitoring when verified outcome labels become available.
+- Configurable warning thresholds.
+- Model rollback support.
+- Validation requirements for retraining.
+
+Do not claim that model drift proves model failure. Do not automatically deploy retrained models without evaluation and approval.
+
+---
+
+# 19. BACKEND API DESIGN
+
+Create documented endpoints for:
+- Authentication.
+- User profiles.
+- Consent management.
+- Health assessment submission.
+- Prediction requests.
+- Prediction explanations.
+- Counterfactual generation.
+- Historical assessment retrieval.
+- Measurement history.
+- Prevention recommendations.
+- Progress tracking.
+- Data export and deletion.
+- Model metadata.
+- Research experiments.
+- Fairness reports.
+- Drift reports.
+- Administrator operations.
+
+Use FastAPI for ML-specific operations and Express for the primary application backend.
+
+Implement:
+- Schema validation.
+- Authentication and authorization.
+- Request-size limits.
+- Rate limiting.
+- Safe error messages.
+- Structured logging.
+- API documentation.
+- Service-to-service authentication.
+- Timeouts and failure handling.
+
+The frontend must communicate through the actual APIs. Do not fabricate successful responses.
+
+---
+
+# 20. DATABASE DESIGN
+
+Create appropriate collections for:
+- Users.
+- Consent records.
+- Health profiles.
+- Assessments.
+- Measurements.
+- Prediction records.
+- Explanation records.
+- Counterfactual experiments.
+- Prevention plans.
+- Progress logs.
+- Reminder settings.
+- Model versions.
+- Experiment metadata.
+- Dataset metadata.
+- Recommendation sources.
+- Audit events.
+
+Requirements:
+- Schema validation.
+- Appropriate indexes.
+- Record ownership checks.
+- Minimal necessary data retention.
+- Safe deletion workflows.
+- No public access to sensitive collections.
+- No storage of passwords in plaintext.
+- No storage of secrets in database seed files.
+
+Keep raw health data separate from general application logs.
+
+---
+
+# 21. ADMINISTRATOR DASHBOARD
+
+Provide authorized administrators with:
+- User and role management.
+- Model-version management.
+- Dataset metadata.
+- Experiment results.
+- Performance monitoring.
+- Calibration reports.
+- Fairness reports.
+- Drift indicators.
+- Recommendation-source management.
+- Audit-event review.
+- Application health monitoring.
+- Controlled deployment and rollback.
+
+Use least-privilege access. Do not grant administrators unrestricted access to personal health records by default.
+
+---
+
+# 22. MEDICAL SAFETY AND DISCLAIMERS
+
+Throughout the application:
+- Clearly state that RiskTrust is a research-oriented screening and educational tool.
+- Never label a model prediction as a diagnosis.
+- Never claim that a low score excludes diabetes.
+- Never claim that a high score confirms diabetes.
+- Do not invent test results or patient data.
+- Do not provide unsupported treatment instructions.
+- Encourage appropriate professional assessment when indicated.
+- Provide appropriate urgent-care guidance for concerning symptoms without relying on the model score to exclude emergencies.
+- Display limitations and data provenance.
+- Do not use synthetic demonstration results to support clinical claims.
+- Do not deploy for real clinical decision-making without suitable clinical validation, privacy review, and regulatory assessment.
+
+---
+
+# 23. TESTING REQUIREMENTS
+
+Write automated tests for:
+- Authentication.
+- Authorization.
+- Input validation.
+- Missing data.
+- Invalid values.
+- Model loading.
+- Preprocessing consistency.
+- Prediction output schemas.
+- Calibration functions.
+- SHAP explanations.
+- Counterfactual validity.
+- Uncertainty calculations.
+- Data ownership.
+- Data deletion.
+- API error handling.
+- Frontend navigation.
+- Form submission.
+- Dashboard rendering.
+- Research metric calculations.
+
+Test that:
+- Users cannot access another user's records.
+- Invalid input cannot silently produce a valid-looking result.
+- Predictions use the correct versioned preprocessing pipeline.
+- Counterfactual results are re-evaluated by the model.
+- Failed API requests display meaningful errors.
+- Model artifacts cannot be replaced by untrusted uploads.
+- Charts use real API or experiment data rather than hardcoded examples.
+
+Document any tests that require external data or infrastructure.
+
+---
+
+# 24. PROJECT STRUCTURE AND DELIVERABLES
+
+Create a clean repository with separate directories for:
+- Frontend.
+- Express backend.
+- Python ML service.
+- Dataset preparation.
+- Model training.
+- Model evaluation.
+- Explanation methods.
+- Counterfactual methods.
+- Reliability analysis.
+- Research experiments.
+- Automated tests.
+- Deployment configuration.
+- Documentation.
+
+Deliver:
+1. Complete source code.
+2. Dataset preparation scripts.
+3. Training and evaluation scripts.
+4. Saved model artifacts where permitted.
+5. Backend APIs.
+6. Frontend application.
+7. Database schemas.
+8. Automated tests.
+9. Environment-variable template.
+10. Docker configuration.
+11. API documentation.
+12. README.
+13. Architecture documentation.
+14. Dataset and model cards.
+15. Research methodology document.
+16. Experiment results report.
+17. Research limitations.
+18. Setup and deployment guide.
+19. A demonstration mode using clearly labeled synthetic data.
+
+Never commit real secrets, private health records, or restricted datasets.
+
+---
+
+# 25. IMPLEMENTATION STRATEGY
+
+Work in the following order:
+
+PHASE 1 — Inspect the development environment and create the repository structure.
+
+PHASE 2 — Inspect and document the selected dataset.
+
+PHASE 3 — Build the baseline ML pipeline with leakage prevention and reproducible evaluation.
+
+PHASE 4 — Implement calibration, uncertainty, input-quality checks, and model versioning.
+
+PHASE 5 — Implement SHAP explanations and explanation-stability experiments.
+
+PHASE 6 — Implement constrained counterfactual generation and feasibility evaluation.
+
+PHASE 7 — Implement external-validation and fairness-analysis workflows.
+
+PHASE 8 — Build the FastAPI ML service.
+
+PHASE 9 — Build the Express backend, authentication, database schemas, and security controls.
+
+PHASE 10 — Build the React interface and connect every functional screen to real APIs.
+
+PHASE 11 — Implement prevention education, history, progress monitoring, and research dashboards.
+
+PHASE 12 — Add automated tests, error handling, documentation, and deployment configuration.
+
+PHASE 13 — Run the entire system, fix integration issues, and verify major user journeys.
+
+If execution time is limited, prioritize a complete vertical slice that works end to end before implementing secondary modules.
+
+Do not merely create files and claim completion. Run the available tests and report which workflows were actually verified.
+
+If external datasets, model downloads, credentials, or infrastructure are unavailable, provide clear setup instructions and a transparent incomplete status rather than inventing results.
+
+---
+
+# 26. FINAL ACCEPTANCE CRITERIA
+
+The project is ready for demonstration only when:
+
+- A user can complete a questionnaire.
+- Input validation works.
+- A trained model produces a real prediction.
+- The result is explained through an implemented XAI method.
+- Calibration and uncertainty are evaluated.
+- Counterfactuals are validated against the actual model.
+- Reliability reports display computed metrics.
+- Fairness and external-validation workflows operate when suitable data is supplied.
+- Assessment history works with access controls.
+- The prevention planner uses documented sources.
+- Research experiments are reproducible.
+- APIs and database operations are connected.
+- Automated tests have been run and their results documented.
+- The application starts using documented instructions.
+- Medical and privacy limitations are clearly communicated.
+
+**FINAL OBJECTIVE**
+
+Deliver RiskTrust as a coherent, reproducible, research-oriented AI screening platform whose primary contribution is the systematic evaluation of prediction reliability, explanation stability, counterfactual feasibility, fairness, and generalization.
+
+Optimize for scientific validity, security, usability, and measurable evidence—not merely the number of features or the visual appearance of the dashboard.

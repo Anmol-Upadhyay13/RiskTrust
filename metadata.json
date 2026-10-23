@@ -1,0 +1,6 @@
+{
+  "name": "DiaCare XAI - Explainable Diabetes Screening & Prevention",
+  "description": "An Explainable AI-Based Early Diabetes Risk Screening and Personalized Prevention System featuring multi-model ML benchmarking, SHAP-inspired interpretability, risk factor attribution, and clinical lifestyle intervention guidance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
