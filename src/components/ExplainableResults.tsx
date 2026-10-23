@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FullAssessmentResult, AlgorithmType } from '../types/diabetes';
 import { SHAPWaterfall } from './SHAPWaterfall';
 import { RadarChart } from './RadarChart';
@@ -8,6 +8,7 @@ import { RiskTrustReliabilityCard } from './RiskTrustReliabilityCard';
 import { ClinicalScorecards } from './ClinicalScorecards';
 import { PartialDependenceView } from './PartialDependenceView';
 import { SHAPBeeswarmPlot } from './SHAPBeeswarmPlot';
+import { ClinicalReportModal } from './ClinicalReportModal';
 import { BENCHMARK_MODELS, normalizeGlucoseToMgDl } from '../ml/mlEngine';
 import { runRiskTrustReliabilityAudit } from '../ml/reliabilityEngine';
 import {
@@ -19,6 +20,7 @@ import {
   ArrowRight,
   HelpCircle,
   Stethoscope,
+  Printer,
   Info
 } from 'lucide-react';
 
@@ -35,6 +37,7 @@ export const ExplainableResults: React.FC<ExplainableResultsProps> = ({
   onNavigateToDiagnostic,
   onSelectModel
 }) => {
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const { primaryPrediction, allModelPredictions, shapContributions, domainScores, baseRisk, patientData } = assessment;
   const isHigh = primaryPrediction.riskLevel === 'High';
   const isMod = primaryPrediction.riskLevel === 'Moderate';
@@ -312,6 +315,13 @@ export const ExplainableResults: React.FC<ExplainableResultsProps> = ({
             </button>
           )}
           <button
+            onClick={() => setIsReportModalOpen(true)}
+            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg text-xs transition-colors flex items-center gap-2 cursor-pointer shadow-sm border border-slate-700"
+          >
+            <Printer className="w-3.5 h-3.5 text-blue-400" />
+            <span>Print Doctor Report</span>
+          </button>
+          <button
             onClick={onNavigateToPrevention}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg text-xs transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
           >
@@ -320,6 +330,13 @@ export const ExplainableResults: React.FC<ExplainableResultsProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Clinical Report & Print Modal */}
+      <ClinicalReportModal
+        isOpen={isReportModalOpen}
+        onClose={() => setIsReportModalOpen(false)}
+        assessment={assessment}
+      />
     </div>
   );
 };

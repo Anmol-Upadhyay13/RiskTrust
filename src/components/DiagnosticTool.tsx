@@ -657,13 +657,31 @@ export const DiagnosticTool: React.FC = () => {
               </p>
             </div>
 
-            <button
-              onClick={copyFhirJson}
-              className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5 self-start sm:self-auto"
-            >
-              {copiedFhir ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedFhir ? 'FHIR Copied!' : 'Copy FHIR R4 JSON'}</span>
-            </button>
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <button
+                onClick={() => {
+                  const blob = new Blob([JSON.stringify(diagnosticResult.fhirR4DiagnosticReport, null, 2)], { type: 'application/json' });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = `FHIR_R4_DiagnosticReport_${new Date().toISOString().slice(0, 10)}.json`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                }}
+                className="px-3.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5 shadow-xs"
+              >
+                <Download className="w-3.5 h-3.5 text-teal-600" />
+                <span>Download JSON</span>
+              </button>
+
+              <button
+                onClick={copyFhirJson}
+                className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5 shadow-xs"
+              >
+                {copiedFhir ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copiedFhir ? 'FHIR Copied!' : 'Copy FHIR R4 JSON'}</span>
+              </button>
+            </div>
           </div>
 
           <pre className="font-mono text-xs bg-slate-950 text-emerald-400 p-4 rounded-xl overflow-x-auto whitespace-pre leading-relaxed max-h-[500px]">
